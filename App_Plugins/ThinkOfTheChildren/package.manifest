@@ -1,0 +1,18 @@
+﻿{
+    propertyEditors: [
+        {
+            alias: "NW.ThinkOfTheChildren",
+            name: "Think of the children!",
+            editor: {
+                view: "~/App_Plugins/ThinkOfTheChildren/view.html",
+            }
+        }
+    ]
+    ,
+    javascript: [
+        '~/App_Plugins/ThinkOfTheChildren/script.js',
+    ],
+	css: [
+		'~/App_Plugins/ThinkOfTheChildren/style.css'
+	]
+}
