@@ -24,7 +24,7 @@ namespace NW.ThinkOfTheChildren
                 switch (sender.TreeAlias)
                 {
                     case "content":
-                        AddShowUnpublishedMenuItem(e);
+                        AddThinkOfTheChildrenMenuItem(e);
                         break;
                 }
             }
@@ -35,7 +35,7 @@ namespace NW.ThinkOfTheChildren
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        private void AddShowUnpublishedMenuItem(MenuRenderingEventArgs e)
+        private void AddThinkOfTheChildrenMenuItem(MenuRenderingEventArgs e)
         {
             try
             {
@@ -44,8 +44,8 @@ namespace NW.ThinkOfTheChildren
                 var node = cs.GetById(int.Parse(e.NodeId));
                 if (node.Id != 0)
                 {
-                    MenuItem i = new MenuItem("toggleUnpublished", "Show/hide unpublished");
-                    i.AdditionalData.Add("jsAction", "toggleUnpublished()");
+                    MenuItem i = new MenuItem("thinkOfTheChildren", "Think of the children!");
+                    i.AdditionalData.Add("jsAction", "totc_toggleUnpublished()");
 
                     e.Menu.Items.Add(i);
                 }

@@ -10,9 +10,9 @@
     ]
     ,
     javascript: [
-        '~/App_Plugins/ThinkOfTheChildren/script.js',
+        '~/App_Plugins/ThinkOfTheChildren/totc.js',
     ],
 	css: [
-		'~/App_Plugins/ThinkOfTheChildren/style.css'
+		'~/App_Plugins/ThinkOfTheChildren/totc.css'
 	]
 }
