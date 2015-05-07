@@ -42,9 +42,20 @@ totc.addClass = function() {
 // finally, we listen for clicks on the menu item and toggle its text as appropriate
 angular.module('umbraco').factory('thinkofthechildren', function (appState, eventsService, treeService, editorState, angularHelper) {
 
-    return {
-        init: function (scope) {
+    var totcFactory = {},
+        currentSection;
 
+    totcFactory.init = function () {
+        eventsService.on('appState.sectionState.changed', function (e, args) {
+                currentSection = args.value;            
+        });
+
+        totcFactory.listenForMenuStateChange();
+    }
+
+    totcFactory.listenForMenuStateChange = function () {
+
+        if (currentSection === 'content') {
             var hideName = 'Hide unpublished nodes', showName = 'Show unpublished nodes';
 
             eventsService.on('appState.menuState.changed', function (e, args) {
@@ -67,7 +78,7 @@ angular.module('umbraco').factory('thinkofthechildren', function (appState, even
                     }
                     else {
                         menuItem.name = hideName;
-                    }                    
+                    }
 
                     // add click handler to contextmenu links - needs to be in here
                     // as it's dependent on the existence of the menuItem
@@ -80,7 +91,7 @@ angular.module('umbraco').factory('thinkofthechildren', function (appState, even
                         }
                     });
 
-                // when the menu is loaded, check for show/hide value and add class if needed
+                    // when the menu is loaded, check for show/hide value and add class if needed
                 } else if (args.key === 'currentNode') {
                     if (hideUnpublished) {
                         totc.addClass();
@@ -89,6 +100,8 @@ angular.module('umbraco').factory('thinkofthechildren', function (appState, even
             });
         }
     }
+
+    return totcFactory
 });
 
 // grabs the #mainwrapper element, toggles the class, updates localstorage if available
